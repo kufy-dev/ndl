@@ -5,33 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kuesioner Penelitian PT NDL</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-      body { background-color: #f0f2f5; font-family: 'Segoe UI', Tahoma, sans-serif; }
+      body { background-color: #f8f9fa; font-family: 'Segoe UI', Tahoma, sans-serif; }
       .container { max-width: 600px; margin-top: 30px; margin-bottom: 60px; }
       .card { border-radius: 15px; border: none; box-shadow: 0 5px 15px rgba(0,0,0,0.08); overflow: hidden; }
       .header-bg { background: linear-gradient(135deg, #0d6efd, #0dcaf0); color: white; padding: 40px 20px; text-align: center; }
       .question-box { background: #fff; padding: 20px; border-left: 5px solid #0d6efd; margin-bottom: 25px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
-      
-      /* PERBAIKAN CSS UNTUK LABEL */
       .scale-options { display: flex; justify-content: space-between; margin-top: 15px; }
-      
-      /* Ubah div menjadi label agar bisa di-klik seluruh areanya */
-      .scale-item { 
-          text-align: center; 
-          width: 18%; 
-          display: flex; 
-          flex-direction: column; 
-          align-items: center; 
-          cursor: pointer; 
-      }
-      
-      .scale-item input { transform: scale(1.3); cursor: pointer; margin-bottom: 5px; accent-color: #0d6efd; }
+      .scale-item { text-align: center; width: 18%; }
+      .scale-item input { transform: scale(1.3); cursor: pointer; margin-bottom: 5px; }
       .scale-label { font-size: 11px; color: #6c757d; font-weight: 600; }
-      
       .hidden { display: none !important; }
       .btn-primary-custom { background-color: #0d6efd; border: none; border-radius: 50px; padding: 12px 30px; font-weight: bold; width: 100%; transition: all 0.3s; }
-      .btn-primary-custom:hover { background-color: #0b5ed7; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(13, 110, 253, 0.3); }
+      .btn-primary-custom:hover { background-color: #0b5ed7; transform: translateY(-2px); }
     </style>
 </head>
 <body>
@@ -49,10 +35,10 @@
           <form name="submit-to-google-sheet">
             
             <div id="step1">
-              <h5 class="text-primary mb-3"><i class="fas fa-filter"></i> Bagian 1: Penyaringan</h5>
+              <h5 class="text-primary mb-3"><i class="bi bi-funnel"></i> Bagian 1: Penyaringan</h5>
               
               <div class="mb-3">
-                <label class="fw-bold mb-2" for="scr1">1. Apakah Anda berdomisili di Jabodetabek/Jawa Barat?</label>
+                <label class="fw-bold mb-2">1. Apakah Anda berdomisili di Jabodetabek/Jawa Barat?</label>
                 <select class="form-select p-3" name="screening1" id="scr1" required>
                   <option value="" selected disabled>Pilih jawaban...</option>
                   <option value="Ya">Ya</option>
@@ -61,7 +47,7 @@
               </div>
 
               <div class="mb-3">
-                <label class="fw-bold mb-2" for="scr2">2. Apakah pernah membeli snack PT NDL min. 2x dalam 6 bulan terakhir?</label>
+                <label class="fw-bold mb-2">2. Apakah pernah membeli snack PT NDL min. 2x dalam 6 bulan terakhir?</label>
                 <select class="form-select p-3" name="screening2" id="scr2" required>
                   <option value="" selected disabled>Pilih jawaban...</option>
                   <option value="Ya">Ya</option>
@@ -69,38 +55,38 @@
                 </select>
               </div>
 
-              <button type="button" class="btn btn-primary-custom mt-3" onclick="cekScreening()">Mulai Isi Kuesioner <i class="fas fa-arrow-right ms-2"></i></button>
+              <button type="button" class="btn btn-primary-custom mt-3" onclick="cekScreening()">Mulai Isi Kuesioner</button>
             </div>
 
             <div id="step2" class="hidden">
               <div class="alert alert-success small border-0 bg-success-subtle text-success">
-                <i class="fas fa-check-circle me-2"></i> <span class="fw-bold">Selamat!</span> Anda memenuhi kriteria responden.
+                <span class="fw-bold">Selamat!</span> Anda memenuhi kriteria responden.
               </div>
 
-              <h6 class="text-secondary fw-bold text-uppercase mt-4 mb-3"><i class="fas fa-user me-2"></i>A. Data Responden</h6>
+              <h6 class="text-secondary fw-bold text-uppercase mt-4 mb-3">A. Data Responden</h6>
               
               <div class="mb-3">
-                <label class="form-label small fw-bold text-muted" for="inputNama">Nama / Inisial</label>
-                <input type="text" class="form-control p-3" name="nama" id="inputNama" placeholder="Contoh: Budi A." required>
+                <label class="form-label small fw-bold text-muted">Nama / Inisial</label>
+                <input type="text" class="form-control p-3" name="nama" placeholder="Contoh: Budi A." required>
               </div>
 
               <div class="row">
                 <div class="col-6 mb-3">
-                  <label class="form-label small fw-bold text-muted" for="inputJK">Jenis Kelamin</label>
-                  <select class="form-select p-3" name="jk" id="inputJK" required>
+                  <label class="form-label small fw-bold text-muted">Jenis Kelamin</label>
+                  <select class="form-select p-3" name="jk" required>
                     <option value="Laki-laki">Laki-laki</option>
                     <option value="Perempuan">Perempuan</option>
                   </select>
                 </div>
                 <div class="col-6 mb-3">
-                  <label class="form-label small fw-bold text-muted" for="inputUsia">Usia</label>
-                  <input type="number" class="form-control p-3" name="usia" id="inputUsia" placeholder="Thn" required>
+                  <label class="form-label small fw-bold text-muted">Usia</label>
+                  <input type="number" class="form-control p-3" name="usia" placeholder="Thn" required>
                 </div>
               </div>
 
               <div class="mb-4">
-                <label class="form-label small fw-bold text-muted" for="inputPekerjaan">Pekerjaan</label>
-                <select class="form-select p-3" name="pekerjaan" id="inputPekerjaan" required>
+                <label class="form-label small fw-bold text-muted">Pekerjaan</label>
+                <select class="form-select p-3" name="pekerjaan" required>
                   <option value="" disabled selected>Pilih pekerjaan...</option>
                   <option value="Pelajar/Mahasiswa">Pelajar/Mahasiswa</option>
                   <option value="Pegawai Swasta">Pegawai Swasta</option>
@@ -114,161 +100,161 @@
                 Skala: <strong>1 (Sangat Tidak Setuju)</strong> s/d <strong>5 (Sangat Setuju)</strong>
               </div>
 
-              <h6 class="text-secondary fw-bold text-uppercase mb-3"><i class="fas fa-box me-2"></i>B. Kualitas Produk (X)</h6>
+              <h6 class="text-secondary fw-bold text-uppercase mb-3">B. Kualitas Produk (X)</h6>
 
               <div class="question-box">
-                <p class="fw-bold d-block mb-2">1. Rasa snack PT NDL enak dan konsisten.</p>
+                <label class="fw-bold d-block mb-2">1. Rasa snack PT NDL enak dan konsisten.</label>
                 <div class="scale-options">
-                  <label class="scale-item"><input type="radio" name="x1" value="1" required><span class="scale-label">STS</span></label>
-                  <label class="scale-item"><input type="radio" name="x1" value="2"><span class="scale-label">TS</span></label>
-                  <label class="scale-item"><input type="radio" name="x1" value="3"><span class="scale-label">N</span></label>
-                  <label class="scale-item"><input type="radio" name="x1" value="4"><span class="scale-label">S</span></label>
-                  <label class="scale-item"><input type="radio" name="x1" value="5"><span class="scale-label">SS</span></label>
+                  <div class="scale-item"><input type="radio" name="x1" value="1" required><div class="scale-label">STS</div></div>
+                  <div class="scale-item"><input type="radio" name="x1" value="2"><div class="scale-label">TS</div></div>
+                  <div class="scale-item"><input type="radio" name="x1" value="3"><div class="scale-label">N</div></div>
+                  <div class="scale-item"><input type="radio" name="x1" value="4"><div class="scale-label">S</div></div>
+                  <div class="scale-item"><input type="radio" name="x1" value="5"><div class="scale-label">SS</div></div>
                 </div>
               </div>
 
               <div class="question-box">
-                <p class="fw-bold d-block mb-2">2. Tekstur snack PT NDL renyah (tidak melempem).</p>
+                <label class="fw-bold d-block mb-2">2. Tekstur snack PT NDL renyah (tidak melempem).</label>
                 <div class="scale-options">
-                  <label class="scale-item"><input type="radio" name="x2" value="1" required><span class="scale-label">1</span></label>
-                  <label class="scale-item"><input type="radio" name="x2" value="2"><span class="scale-label">2</span></label>
-                  <label class="scale-item"><input type="radio" name="x2" value="3"><span class="scale-label">3</span></label>
-                  <label class="scale-item"><input type="radio" name="x2" value="4"><span class="scale-label">4</span></label>
-                  <label class="scale-item"><input type="radio" name="x2" value="5"><span class="scale-label">5</span></label>
+                  <div class="scale-item"><input type="radio" name="x2" value="1" required><div class="scale-label">1</div></div>
+                  <div class="scale-item"><input type="radio" name="x2" value="2"><div class="scale-label">2</div></div>
+                  <div class="scale-item"><input type="radio" name="x2" value="3"><div class="scale-label">3</div></div>
+                  <div class="scale-item"><input type="radio" name="x2" value="4"><div class="scale-label">4</div></div>
+                  <div class="scale-item"><input type="radio" name="x2" value="5"><div class="scale-label">5</div></div>
                 </div>
               </div>
               
               <div class="question-box">
-                <p class="fw-bold d-block mb-2">3. Kemasan produk rapi, menarik, dan higienis.</p>
+                <label class="fw-bold d-block mb-2">3. Kemasan produk rapi, menarik, dan higienis.</label>
                 <div class="scale-options">
-                  <label class="scale-item"><input type="radio" name="x3" value="1" required><span class="scale-label">1</span></label>
-                  <label class="scale-item"><input type="radio" name="x3" value="2"><span class="scale-label">2</span></label>
-                  <label class="scale-item"><input type="radio" name="x3" value="3"><span class="scale-label">3</span></label>
-                  <label class="scale-item"><input type="radio" name="x3" value="4"><span class="scale-label">4</span></label>
-                  <label class="scale-item"><input type="radio" name="x3" value="5"><span class="scale-label">5</span></label>
+                  <div class="scale-item"><input type="radio" name="x3" value="1" required><div class="scale-label">1</div></div>
+                  <div class="scale-item"><input type="radio" name="x3" value="2"><div class="scale-label">2</div></div>
+                  <div class="scale-item"><input type="radio" name="x3" value="3"><div class="scale-label">3</div></div>
+                  <div class="scale-item"><input type="radio" name="x3" value="4"><div class="scale-label">4</div></div>
+                  <div class="scale-item"><input type="radio" name="x3" value="5"><div class="scale-label">5</div></div>
                 </div>
               </div>
               
               <div class="question-box">
-                <p class="fw-bold d-block mb-2">4. Porsi/isi produk sesuai dengan harga.</p>
+                <label class="fw-bold d-block mb-2">4. Porsi/isi produk sesuai dengan harga.</label>
                 <div class="scale-options">
-                  <label class="scale-item"><input type="radio" name="x4" value="1" required><span class="scale-label">1</span></label>
-                  <label class="scale-item"><input type="radio" name="x4" value="2"><span class="scale-label">2</span></label>
-                  <label class="scale-item"><input type="radio" name="x4" value="3"><span class="scale-label">3</span></label>
-                  <label class="scale-item"><input type="radio" name="x4" value="4"><span class="scale-label">4</span></label>
-                  <label class="scale-item"><input type="radio" name="x4" value="5"><span class="scale-label">5</span></label>
+                  <div class="scale-item"><input type="radio" name="x4" value="1" required><div class="scale-label">1</div></div>
+                  <div class="scale-item"><input type="radio" name="x4" value="2"><div class="scale-label">2</div></div>
+                  <div class="scale-item"><input type="radio" name="x4" value="3"><div class="scale-label">3</div></div>
+                  <div class="scale-item"><input type="radio" name="x4" value="4"><div class="scale-label">4</div></div>
+                  <div class="scale-item"><input type="radio" name="x4" value="5"><div class="scale-label">5</div></div>
                 </div>
               </div>
               
                <div class="question-box">
-                <p class="fw-bold d-block mb-2">5. Produk memiliki daya tahan (kadaluarsa) yang aman.</p>
+                <label class="fw-bold d-block mb-2">5. Produk memiliki daya tahan (kadaluarsa) yang aman.</label>
                 <div class="scale-options">
-                  <label class="scale-item"><input type="radio" name="x5" value="1" required><span class="scale-label">1</span></label>
-                  <label class="scale-item"><input type="radio" name="x5" value="2"><span class="scale-label">2</span></label>
-                  <label class="scale-item"><input type="radio" name="x5" value="3"><span class="scale-label">3</span></label>
-                  <label class="scale-item"><input type="radio" name="x5" value="4"><span class="scale-label">4</span></label>
-                  <label class="scale-item"><input type="radio" name="x5" value="5"><span class="scale-label">5</span></label>
+                  <div class="scale-item"><input type="radio" name="x5" value="1" required><div class="scale-label">1</div></div>
+                  <div class="scale-item"><input type="radio" name="x5" value="2"><div class="scale-label">2</div></div>
+                  <div class="scale-item"><input type="radio" name="x5" value="3"><div class="scale-label">3</div></div>
+                  <div class="scale-item"><input type="radio" name="x5" value="4"><div class="scale-label">4</div></div>
+                  <div class="scale-item"><input type="radio" name="x5" value="5"><div class="scale-label">5</div></div>
                 </div>
               </div>
 
-              <h6 class="text-secondary fw-bold text-uppercase mb-3 mt-4"><i class="fas fa-smile me-2"></i>C. Kepuasan Pelanggan (Z)</h6>
+              <h6 class="text-secondary fw-bold text-uppercase mb-3 mt-4">C. Kepuasan Pelanggan (Z)</h6>
               <div class="question-box">
-                <p class="fw-bold d-block mb-2">1. Produk snack PT NDL sesuai dengan harapan saya.</p>
+                <label class="fw-bold d-block mb-2">1. Produk snack PT NDL sesuai dengan harapan saya.</label>
                 <div class="scale-options">
-                    <label class="scale-item"><input type="radio" name="z1" value="1" required><span class="scale-label">1</span></label>
-                    <label class="scale-item"><input type="radio" name="z1" value="2"><span class="scale-label">2</span></label>
-                    <label class="scale-item"><input type="radio" name="z1" value="3"><span class="scale-label">3</span></label>
-                    <label class="scale-item"><input type="radio" name="z1" value="4"><span class="scale-label">4</span></label>
-                    <label class="scale-item"><input type="radio" name="z1" value="5"><span class="scale-label">5</span></label>
+                    <div class="scale-item"><input type="radio" name="z1" value="1" required><div class="scale-label">1</div></div>
+                    <div class="scale-item"><input type="radio" name="z1" value="2"><div class="scale-label">2</div></div>
+                    <div class="scale-item"><input type="radio" name="z1" value="3"><div class="scale-label">3</div></div>
+                    <div class="scale-item"><input type="radio" name="z1" value="4"><div class="scale-label">4</div></div>
+                    <div class="scale-item"><input type="radio" name="z1" value="5"><div class="scale-label">5</div></div>
                 </div>
               </div>
               
               <div class="question-box">
-                <p class="fw-bold d-block mb-2">2. Saya merasa puas setelah mengonsumsi snack PT NDL.</p>
+                <label class="fw-bold d-block mb-2">2. Saya merasa puas setelah mengonsumsi snack PT NDL.</label>
                 <div class="scale-options">
-                    <label class="scale-item"><input type="radio" name="z2" value="1" required><span class="scale-label">1</span></label>
-                    <label class="scale-item"><input type="radio" name="z2" value="2"><span class="scale-label">2</span></label>
-                    <label class="scale-item"><input type="radio" name="z2" value="3"><span class="scale-label">3</span></label>
-                    <label class="scale-item"><input type="radio" name="z2" value="4"><span class="scale-label">4</span></label>
-                    <label class="scale-item"><input type="radio" name="z2" value="5"><span class="scale-label">5</span></label>
+                    <div class="scale-item"><input type="radio" name="z2" value="1" required><div class="scale-label">1</div></div>
+                    <div class="scale-item"><input type="radio" name="z2" value="2"><div class="scale-label">2</div></div>
+                    <div class="scale-item"><input type="radio" name="z2" value="3"><div class="scale-label">3</div></div>
+                    <div class="scale-item"><input type="radio" name="z2" value="4"><div class="scale-label">4</div></div>
+                    <div class="scale-item"><input type="radio" name="z2" value="5"><div class="scale-label">5</div></div>
                 </div>
               </div>
               
               <div class="question-box">
-                <p class="fw-bold d-block mb-2">3. Saya tidak memiliki keluhan berarti terhadap produk ini.</p>
+                <label class="fw-bold d-block mb-2">3. Saya tidak memiliki keluhan berarti terhadap produk ini.</label>
                 <div class="scale-options">
-                    <label class="scale-item"><input type="radio" name="z3" value="1" required><span class="scale-label">1</span></label>
-                    <label class="scale-item"><input type="radio" name="z3" value="2"><span class="scale-label">2</span></label>
-                    <label class="scale-item"><input type="radio" name="z3" value="3"><span class="scale-label">3</span></label>
-                    <label class="scale-item"><input type="radio" name="z3" value="4"><span class="scale-label">4</span></label>
-                    <label class="scale-item"><input type="radio" name="z3" value="5"><span class="scale-label">5</span></label>
+                    <div class="scale-item"><input type="radio" name="z3" value="1" required><div class="scale-label">1</div></div>
+                    <div class="scale-item"><input type="radio" name="z3" value="2"><div class="scale-label">2</div></div>
+                    <div class="scale-item"><input type="radio" name="z3" value="3"><div class="scale-label">3</div></div>
+                    <div class="scale-item"><input type="radio" name="z3" value="4"><div class="scale-label">4</div></div>
+                    <div class="scale-item"><input type="radio" name="z3" value="5"><div class="scale-label">5</div></div>
                 </div>
               </div>
               
                <div class="question-box">
-                <p class="fw-bold d-block mb-2">4. Secara keseluruhan, saya senang membeli produk ini.</p>
+                <label class="fw-bold d-block mb-2">4. Secara keseluruhan, saya senang membeli produk ini.</label>
                 <div class="scale-options">
-                    <label class="scale-item"><input type="radio" name="z4" value="1" required><span class="scale-label">1</span></label>
-                    <label class="scale-item"><input type="radio" name="z4" value="2"><span class="scale-label">2</span></label>
-                    <label class="scale-item"><input type="radio" name="z4" value="3"><span class="scale-label">3</span></label>
-                    <label class="scale-item"><input type="radio" name="z4" value="4"><span class="scale-label">4</span></label>
-                    <label class="scale-item"><input type="radio" name="z4" value="5"><span class="scale-label">5</span></label>
+                    <div class="scale-item"><input type="radio" name="z4" value="1" required><div class="scale-label">1</div></div>
+                    <div class="scale-item"><input type="radio" name="z4" value="2"><div class="scale-label">2</div></div>
+                    <div class="scale-item"><input type="radio" name="z4" value="3"><div class="scale-label">3</div></div>
+                    <div class="scale-item"><input type="radio" name="z4" value="4"><div class="scale-label">4</div></div>
+                    <div class="scale-item"><input type="radio" name="z4" value="5"><div class="scale-label">5</div></div>
                 </div>
               </div>
 
-              <h6 class="text-secondary fw-bold text-uppercase mb-3 mt-4"><i class="fas fa-heart me-2"></i>D. Loyalitas Pelanggan (Y)</h6>
+              <h6 class="text-secondary fw-bold text-uppercase mb-3 mt-4">D. Loyalitas Pelanggan (Y)</h6>
               <div class="question-box">
-                <p class="fw-bold d-block mb-2">1. Saya berniat membeli kembali snack PT NDL.</p>
+                <label class="fw-bold d-block mb-2">1. Saya berniat membeli kembali snack PT NDL.</label>
                 <div class="scale-options">
-                    <label class="scale-item"><input type="radio" name="y1" value="1" required><span class="scale-label">1</span></label>
-                    <label class="scale-item"><input type="radio" name="y1" value="2"><span class="scale-label">2</span></label>
-                    <label class="scale-item"><input type="radio" name="y1" value="3"><span class="scale-label">3</span></label>
-                    <label class="scale-item"><input type="radio" name="y1" value="4"><span class="scale-label">4</span></label>
-                    <label class="scale-item"><input type="radio" name="y1" value="5"><span class="scale-label">5</span></label>
+                    <div class="scale-item"><input type="radio" name="y1" value="1" required><div class="scale-label">1</div></div>
+                    <div class="scale-item"><input type="radio" name="y1" value="2"><div class="scale-label">2</div></div>
+                    <div class="scale-item"><input type="radio" name="y1" value="3"><div class="scale-label">3</div></div>
+                    <div class="scale-item"><input type="radio" name="y1" value="4"><div class="scale-label">4</div></div>
+                    <div class="scale-item"><input type="radio" name="y1" value="5"><div class="scale-label">5</div></div>
                 </div>
               </div>
               
               <div class="question-box">
-                <p class="fw-bold d-block mb-2">2. Saya akan merekomendasikan produk ini ke teman.</p>
+                <label class="fw-bold d-block mb-2">2. Saya akan merekomendasikan produk ini ke teman.</label>
                 <div class="scale-options">
-                    <label class="scale-item"><input type="radio" name="y2" value="1" required><span class="scale-label">1</span></label>
-                    <label class="scale-item"><input type="radio" name="y2" value="2"><span class="scale-label">2</span></label>
-                    <label class="scale-item"><input type="radio" name="y2" value="3"><span class="scale-label">3</span></label>
-                    <label class="scale-item"><input type="radio" name="y2" value="4"><span class="scale-label">4</span></label>
-                    <label class="scale-item"><input type="radio" name="y2" value="5"><span class="scale-label">5</span></label>
+                    <div class="scale-item"><input type="radio" name="y2" value="1" required><div class="scale-label">1</div></div>
+                    <div class="scale-item"><input type="radio" name="y2" value="2"><div class="scale-label">2</div></div>
+                    <div class="scale-item"><input type="radio" name="y2" value="3"><div class="scale-label">3</div></div>
+                    <div class="scale-item"><input type="radio" name="y2" value="4"><div class="scale-label">4</div></div>
+                    <div class="scale-item"><input type="radio" name="y2" value="5"><div class="scale-label">5</div></div>
                 </div>
               </div>
               
               <div class="question-box">
-                <p class="fw-bold d-block mb-2">3. Snack PT NDL adalah pilihan utama cemilan saya.</p>
+                <label class="fw-bold d-block mb-2">3. Snack PT NDL adalah pilihan utama cemilan saya.</label>
                 <div class="scale-options">
-                    <label class="scale-item"><input type="radio" name="y3" value="1" required><span class="scale-label">1</span></label>
-                    <label class="scale-item"><input type="radio" name="y3" value="2"><span class="scale-label">2</span></label>
-                    <label class="scale-item"><input type="radio" name="y3" value="3"><span class="scale-label">3</span></label>
-                    <label class="scale-item"><input type="radio" name="y3" value="4"><span class="scale-label">4</span></label>
-                    <label class="scale-item"><input type="radio" name="y3" value="5"><span class="scale-label">5</span></label>
+                    <div class="scale-item"><input type="radio" name="y3" value="1" required><div class="scale-label">1</div></div>
+                    <div class="scale-item"><input type="radio" name="y3" value="2"><div class="scale-label">2</div></div>
+                    <div class="scale-item"><input type="radio" name="y3" value="3"><div class="scale-label">3</div></div>
+                    <div class="scale-item"><input type="radio" name="y3" value="4"><div class="scale-label">4</div></div>
+                    <div class="scale-item"><input type="radio" name="y3" value="5"><div class="scale-label">5</div></div>
                 </div>
               </div>
               
               <div class="question-box">
-                <p class="fw-bold d-block mb-2">4. Saya tidak tertarik beralih ke merek snack lain.</p>
+                <label class="fw-bold d-block mb-2">4. Saya tidak tertarik beralih ke merek snack lain.</label>
                 <div class="scale-options">
-                    <label class="scale-item"><input type="radio" name="y4" value="1" required><span class="scale-label">1</span></label>
-                    <label class="scale-item"><input type="radio" name="y4" value="2"><span class="scale-label">2</span></label>
-                    <label class="scale-item"><input type="radio" name="y4" value="3"><span class="scale-label">3</span></label>
-                    <label class="scale-item"><input type="radio" name="y4" value="4"><span class="scale-label">4</span></label>
-                    <label class="scale-item"><input type="radio" name="y4" value="5"><span class="scale-label">5</span></label>
+                    <div class="scale-item"><input type="radio" name="y4" value="1" required><div class="scale-label">1</div></div>
+                    <div class="scale-item"><input type="radio" name="y4" value="2"><div class="scale-label">2</div></div>
+                    <div class="scale-item"><input type="radio" name="y4" value="3"><div class="scale-label">3</div></div>
+                    <div class="scale-item"><input type="radio" name="y4" value="4"><div class="scale-label">4</div></div>
+                    <div class="scale-item"><input type="radio" name="y4" value="5"><div class="scale-label">5</div></div>
                 </div>
               </div>
 
-              <h6 class="text-secondary fw-bold text-uppercase mb-3 mt-4"><i class="fas fa-comment-dots me-2"></i>E. Masukan</h6>
+              <h6 class="text-secondary fw-bold text-uppercase mb-3 mt-4">E. Masukan</h6>
               <div class="mb-4">
-                <label class="form-label small fw-bold text-muted" for="inputSaran">Saran untuk PT NDL (Opsional)</label>
-                <textarea class="form-control p-3" name="saran" id="inputSaran" rows="3" placeholder="Tulis masukan Anda..."></textarea>
+                <label class="form-label small fw-bold text-muted">Saran untuk PT NDL (Opsional)</label>
+                <textarea class="form-control p-3" name="saran" rows="3" placeholder="Tulis masukan Anda..."></textarea>
               </div>
 
               <div class="d-grid gap-2">
-                <button type="submit" class="btn btn-primary-custom btn-lg shadow">KIRIM JAWABAN <i class="fas fa-paper-plane ms-2"></i></button>
+                <button type="submit" class="btn btn-primary-custom btn-lg shadow">KIRIM JAWABAN</button>
                 <button class="btn btn-secondary rounded-pill py-3 hidden" id="btnLoading" type="button" disabled>
                   <span class="spinner-border spinner-border-sm me-2"></span>Sedang Mengirim...
                 </button>
@@ -284,10 +270,10 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
       // ============================================
-      // WAJIB ISI: PASTE LINK GOOGLE APPS SCRIPT ANDA DI BAWAH INI
+      // PASTE LINK GOOGLE APPS SCRIPT ANDA DI SINI
       // ============================================
       const scriptURL = 'https://script.google.com/macros/s/AKfycbwiGmdjtJGTohn43eZufyPvjgdK5HQCclZhv5mFqPFy1dCENG0bK8Ack29vUlYMciic/exec'; 
-      // Contoh format: 'https://script.google.com/macros/s/AKfycbx.../exec'
+      // Contoh: 'https://script.google.com/macros/s/AKfycbx.../exec'
 
       function cekScreening() {
         var s1 = document.getElementById('scr1').value;
@@ -313,18 +299,13 @@
       form.addEventListener('submit', e => {
         e.preventDefault();
         
-        // Cek URL dulu
-        if(scriptURL === 'https://script.google.com/macros/s/AKfycbwiGmdjtJGTohn43eZufyPvjgdK5HQCclZhv5mFqPFy1dCENG0bK8Ack29vUlYMciic/exec' || scriptURL === '') {
-           Swal.fire({ icon: 'error', title: 'Error Developer', text: 'URL Script belum dipasang di index.html' });
-           return;
-        }
-
         // Tampilkan Loading
         btnKirim.classList.add('hidden');
         btnLoading.classList.remove('hidden');
 
         fetch(scriptURL, { method: 'POST', body: new FormData(form)})
           .then(response => {
+              // Sukses
               btnLoading.classList.add('hidden');
               btnKirim.classList.remove('hidden');
               
@@ -340,6 +321,7 @@
               });
           })
           .catch(error => {
+              // Gagal
               console.error('Error!', error.message);
               btnLoading.classList.add('hidden');
               btnKirim.classList.remove('hidden');
@@ -353,4 +335,3 @@
     </script>
 </body>
 </html>
-
