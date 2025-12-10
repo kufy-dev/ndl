@@ -47,5 +47,5 @@ Proyek ini dikembangkan untuk memfasilitasi pengumpulan data responden secara di
 ---
 
 <p align="center">
-  Dibuat dengan ❤️ untuk kemudahan penelitian akademik.
+  Dibuat untuk kemudahan penelitian akademik.
 </p>
